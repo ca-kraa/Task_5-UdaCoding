@@ -1,8 +1,7 @@
-@extends('component.header')
-@section('title','Dashboard')
-@include('component.header')
-@include('component.navbar')
-@include('component.sidebar')
+<?php $__env->startSection('title','Dashboard'); ?>
+<?php echo $__env->make('component.header', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+<?php echo $__env->make('component.navbar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+<?php echo $__env->make('component.sidebar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
@@ -33,7 +32,7 @@
 
             <div class="info-box-content">
               <span class="info-box-text">Jumlah Buku</span>
-              <span class="info-box-number">{{ $jumlahBuku }}</span>
+              <span class="info-box-number"><?php echo e($jumlahBuku); ?></span>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -48,5 +47,7 @@
 </div>
 <!-- /.content-wrapper -->
 
-@include('component.footer')
+<?php echo $__env->make('component.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
+
+<?php echo $__env->make('component.header', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\UdaCoding\Codingan\Task 5\perpustakaan\resources\views/dashboard.blade.php ENDPATH**/ ?>

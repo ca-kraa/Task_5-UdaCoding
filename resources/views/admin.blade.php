@@ -1,3 +1,5 @@
+@extends('component.header')
+@section('title','dashboard')
 @include('component.header')
 @include('component.navbar')
 @include('component.sidebar')

@@ -1,8 +1,8 @@
-@extends('component.header')
-@section('title','Data Buku')
-@include('component.header')
-@include('component.navbar')
-@include('component.sidebar')
+
+<?php $__env->startSection('title','Data Buku'); ?>
+<?php echo $__env->make('component.header', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+<?php echo $__env->make('component.navbar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+<?php echo $__env->make('component.sidebar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
 <div class="content-wrapper">
     <section class="content-header">
@@ -39,27 +39,27 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($buku as $item)
+                    <?php $__currentLoopData = $buku; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <tr>
-                        <td>{{ $item->kode_buku }}</td>
-                        <td>{{ $item->judul_buku }}</td>
-                        <td>{{ $item->penulis_buku }}</td>
-                        <td>{{ $item->penerbit_buku }}</td>
-                        <td>{{ $item->jumlah_halaman }}</td>
+                        <td><?php echo e($item->kode_buku); ?></td>
+                        <td><?php echo e($item->judul_buku); ?></td>
+                        <td><?php echo e($item->penulis_buku); ?></td>
+                        <td><?php echo e($item->penerbit_buku); ?></td>
+                        <td><?php echo e($item->jumlah_halaman); ?></td>
                         <td>
-                            <button class="btn btn-primary btn-sm" data-id="{{ $item->id }}" data-kode="{{ $item->kode_buku }}" data-judul="{{ $item->judul_buku }}" data-penulis="{{ $item->penulis_buku }}" data-penerbit="{{ $item->penerbit_buku }}" data-jumlah="{{ $item->jumlah_halaman }}" onclick="showEditModal(this)" data-toggle="modal" data-target="#editBukuModal">
+                            <button class="btn btn-primary btn-sm" data-id="<?php echo e($item->id); ?>" data-kode="<?php echo e($item->kode_buku); ?>" data-judul="<?php echo e($item->judul_buku); ?>" data-penulis="<?php echo e($item->penulis_buku); ?>" data-penerbit="<?php echo e($item->penerbit_buku); ?>" data-jumlah="<?php echo e($item->jumlah_halaman); ?>" onclick="showEditModal(this)" data-toggle="modal" data-target="#editBukuModal">
                                 <i class="fas fa-edit"></i>
                             </button>
-                            <form action="{{ route('buku.delete', ['id' => $item->id]) }}" method="post" style="display: inline-block;">
-                                @csrf
-                                @method('DELETE')
+                            <form action="<?php echo e(route('buku.delete', ['id' => $item->id])); ?>" method="post" style="display: inline-block;">
+                                <?php echo csrf_field(); ?>
+                                <?php echo method_field('DELETE'); ?>
                                 <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this item?')">
                                     <i class="fas fa-trash"></i>
                                 </button>
                             </form>
                         </td>
                     </tr>
-                    @endforeach
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </tbody>
             </table>
         </div>
@@ -78,7 +78,7 @@
             </div>
             <div class="modal-body">
                 <form id="tambahForm" method="post" action="/buku">
-                    @csrf
+                    <?php echo csrf_field(); ?>
                     <div class="form-group">
                         <label for="kode_buku">Kode Buku</label>
                         <input type="text" name="kode_buku" id="kode_buku" class="form-control" required>
@@ -118,8 +118,8 @@
             </div>
             <div class="modal-body">
                 <form id="editForm" method="post" action="">
-                    @csrf
-                    @method('PUT')
+                    <?php echo csrf_field(); ?>
+                    <?php echo method_field('PUT'); ?>
                     <!-- Sisanya tambahkan field-form sesuai atribut buku -->
                     <div class="form-group">
                         <label for="kode_buku">Kode Buku</label>
@@ -148,4 +148,6 @@
     </div>
 </div>
 
-@include('component.footer')
+<?php echo $__env->make('component.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+
+<?php echo $__env->make('component.header', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\UdaCoding\Codingan\Task 5\perpustakaan\resources\views/buku/index.blade.php ENDPATH**/ ?>
